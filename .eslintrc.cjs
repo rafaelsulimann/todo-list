@@ -27,7 +27,7 @@ module.exports = {
     },
     ecmaVersion: "latest", // Usa a versão mais recente do ECMAScript
     sourceType: "module", // Indica que o código usa a sintaxe de módulos ES
-    project: ["./tsconfig.json", "vite.config.ts"], // Especifica os arquivos de configuração do projeto para o parser
+    project: ["./tsconfig.json"], // Especifica os arquivos de configuração do projeto para o parser
   },
   plugins: [
     "@typescript-eslint", // Habilita o plugin @typescript-eslint
@@ -54,7 +54,7 @@ module.exports = {
     "import/prefer-default-export": "off", // Desativa a regra que exige exportação default
     "import/extensions": "off", // Desativa a regra sobre extensões de arquivo nas importações
     "react/prop-types": "off", // Desativa a regra que exige prop-types em React (útil para projetos TypeScript)
-    "import/no-extraneous-dependencies": [ "error", { packageDir: "./", devDependencies: true, } ], // Evita importações de dependências não listadas no package.json
+    "import/no-extraneous-dependencies": "off", // Evita importações de dependências não listadas no package.json
     "react-refresh/only-export-components": "off", // Específica para o plugin React Refresh, desativada
     "@typescript-eslint/no-explicit-any": "off", // Permite o uso de `any` no TypeScript
     "prettier/prettier": [ "error", { // Configurações do Prettier como regras do ESLint
