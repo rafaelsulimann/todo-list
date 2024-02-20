@@ -6,6 +6,7 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './index.html'
   ],
   prefix: "",
   theme: {
@@ -17,6 +18,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: "Assistant, sans-serif"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

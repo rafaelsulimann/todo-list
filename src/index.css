@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 @layer utilities {
-  .container {
-    @apply max-w-screen-sm w-full;
-    margin: 0 auto;
+  .container-sulimann {
+    @apply max-w-screen-sm mx-auto;
   }
 }
 
