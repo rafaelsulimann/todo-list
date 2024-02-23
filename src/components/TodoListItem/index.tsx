@@ -1,24 +1,21 @@
-import { useTodoContext } from "@/contexts/todo-context";
 import { TodoDTO } from "@/models/todo";
 import { Trash2 } from "lucide-react";
+import { memo } from "react";
 
 type Props = {
   todo: TodoDTO;
+  handleToggleTodo: (todoId: string) => void;
+  handleRemoveTodo: (todoId: string) => void;
 };
 
-export default function TodoListItem({ todo }: Props) {
+function TodoListItem({
+  todo,
+  handleToggleTodo,
+  handleRemoveTodo,
+}: Readonly<Props>) {
   console.log("Renderizando TodoListItem");
-  const { setTodos } = useTodoContext();
   function onToggleTodo(todoId: string) {
-    setTodos((currentTodos) =>
-      currentTodos.map((obj) =>
-        obj.id === todoId ? { ...obj, checked: !obj.checked } : obj,
-      ),
-    );
-  }
-
-  function handleTodoClick(todoId: string) {
-    onToggleTodo(todoId);
+    handleToggleTodo(todoId);
   }
 
   function handleTodoKeyDown(
@@ -32,7 +29,7 @@ export default function TodoListItem({ todo }: Props) {
   }
 
   function handleRemove(todoId: string) {
-    setTodos((currentTodos) => currentTodos.filter((obj) => obj.id !== todoId));
+    handleRemoveTodo(todoId);
   }
   return (
     <li
@@ -43,7 +40,7 @@ export default function TodoListItem({ todo }: Props) {
     >
       <span
         className="cursor-pointer text-lg"
-        onClick={() => handleTodoClick(todo.id)}
+        onClick={() => onToggleTodo(todo.id)}
         onKeyDown={(event) => handleTodoKeyDown(todo.id, event)}
         role="button"
         tabIndex={0}
@@ -57,3 +54,5 @@ export default function TodoListItem({ todo }: Props) {
     </li>
   );
 }
+
+export default memo(TodoListItem);
