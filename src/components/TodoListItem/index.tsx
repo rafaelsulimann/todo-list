@@ -1,21 +1,23 @@
+import useTodoListItem from "@/hooks/useTodoListItem";
 import { TodoDTO } from "@/models/todo";
 import { Trash2 } from "lucide-react";
 import { memo } from "react";
 
 type Props = {
   todo: TodoDTO;
-  handleToggleTodo: (todoId: string) => void;
-  handleRemoveTodo: (todoId: string) => void;
 };
 
-function TodoListItem({
-  todo,
-  handleToggleTodo,
-  handleRemoveTodo,
-}: Readonly<Props>) {
+function TodoListItem({ todo }: Readonly<Props>) {
   console.log("Renderizando TodoListItem");
+
+  const { handleToggleTodo, handleRemoveTodo } = useTodoListItem();
+
   function onToggleTodo(todoId: string) {
     handleToggleTodo(todoId);
+  }
+
+  function handleRemove(todoId: string) {
+    handleRemoveTodo(todoId);
   }
 
   function handleTodoKeyDown(
@@ -28,9 +30,6 @@ function TodoListItem({
     }
   }
 
-  function handleRemove(todoId: string) {
-    handleRemoveTodo(todoId);
-  }
   return (
     <li
       className={[

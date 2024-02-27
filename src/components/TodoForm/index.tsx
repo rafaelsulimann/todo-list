@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
-import { TodoDTO } from "@/models/todo";
-import { memo } from "react";
+import useTodoForm from "@/hooks/useTodoForm";
 
 const todoSchema = z.object({
   value: z.string().min(1, "Campo Obrigatório"),
@@ -12,12 +11,10 @@ const todoSchema = z.object({
 
 type TodoSchema = z.infer<typeof todoSchema>;
 
-type Props = {
-  handleSubmitTodo: (todo: TodoDTO) => void;
-};
-
-function TodoForm({ handleSubmitTodo }: Readonly<Props>) {
+export default function TodoForm() {
   console.log("Renderizando TodoForm");
+  const { handleSubmitTodo } = useTodoForm();
+
   const {
     register,
     handleSubmit,
@@ -77,5 +74,3 @@ function TodoForm({ handleSubmitTodo }: Readonly<Props>) {
     </section>
   );
 }
-
-export default memo(TodoForm);

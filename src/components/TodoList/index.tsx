@@ -1,29 +1,17 @@
-import { memo } from "react";
 import TodoListItem from "../TodoListItem";
-import { useTodoContext } from "@/contexts/todo-context";
+import useTodoList from "@/hooks/useTodoList";
 
-type Props = {
-  handleToggleTodo: (todoId: string) => void;
-  handleRemoveTodo: (todoId: string) => void;
-};
-
-function TodoList({ handleToggleTodo, handleRemoveTodo }: Readonly<Props>) {
+export default function TodoList() {
   console.log("Renderizando TodoList");
-  const { todos } = useTodoContext();
+  const { todos } = useTodoList();
+
   return (
     <section>
       <ul className="space-y-4">
         {todos.map((todo) => (
-          <TodoListItem
-            key={todo.id}
-            todo={todo}
-            handleToggleTodo={handleToggleTodo}
-            handleRemoveTodo={handleRemoveTodo}
-          />
+          <TodoListItem key={todo.id} todo={todo} />
         ))}
       </ul>
     </section>
   );
 }
-
-export default memo(TodoList);
